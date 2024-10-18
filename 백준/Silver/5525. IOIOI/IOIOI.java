@@ -1,35 +1,42 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class Main {
 
-	static int N,M,cnt;
-	static String S,P;
+    static int N, M, cnt, patternCnt;
+    static char[] S;
 
-	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		// StringBuilder sb = new StringBuilder();
-		// StringTokenizer st = new StringTokenizer(br.readLine());
+    public static void main(String[] args) throws Exception {
 
-		N = Integer.parseInt(br.readLine());
-		M = Integer.parseInt(br.readLine());
-		S = br.readLine();
-		P = "IOI";
-		cnt = 0;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        StringTokenizer st;
 
-		for(int i = 1; i < N; i++) {
-			P += "OI";
-		}
+        N = Integer.parseInt(br.readLine());
+        M = Integer.parseInt(br.readLine());
+        S = br.readLine().toCharArray();
+        cnt = 0;
+        patternCnt = 0;
 
-		for(int i = 0; i < S.length()-P.length()+1; i++) {
-			if(S.startsWith(P, i)) {
-				cnt++;
-			}
-		}
+        for(int i = 1; i < M-1; i++) {
+             if(S[i-1] == 'I' && S[i] == 'O' && S[i+1] == 'I') {
+                 patternCnt++;
+                 if(patternCnt == N) {
+                     cnt++;
+                     patternCnt--;
+                 }
+                 i++;
+             } else {
+                 patternCnt = 0;
+             }
+        }
 
-		System.out.println(cnt);
-	}
+        System.out.println(cnt);
 
+
+
+
+    }
 
 }
